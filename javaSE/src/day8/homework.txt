@@ -1,0 +1,71 @@
+东理早鸟班作业:
+1.手写代码
+a.String和StringBuilder和StringBuffer区别?
+String 底层通过final修饰char[] 表示常量  所以每次对字符串
+修改都会创建新的值 存储常量池的 不适合做大量字符串修改
+
+StringBuilder和StringBuffer
+都属于增强型字符串  不是通过final修饰的char[] 每次修改不会创建
+额外的值  比较节省资源  比较适合做大量字符串修改
+StringBuilder: 线程不安全的  底层没有实现线程安全的逻辑 所以用户去
+操作字符串 没有操作完 其他用户依然可以操作  执行效率比较高
+StringBuffer: 线程安全的  底层是通过Synchronized修饰的同步方法
+所以很多用户共同去操作字符串  需要等待每个用户执行方法结束
+执行效率比较低
+
+b.基本类型和封装类型的区别?
+c.int和Integer区别?
+基本类型 比如: int  默认值为0  int不是类 所以不具有类的特征
+也就不具有属性和方法
+封装类型 比如: Integer  默认值null  Integer还具有类的特征
+就可以通过Integer提供的属性和方法 做一些数字处理 比如:
+获取最大值 或者最小值 Integer.MAX
+获取int<==>String  Integer.parseInt
+后期学习集合 泛型必须是封装类型不能是基本类型
+List<Double>
+List<double>
+
+2.语音作业
+a. Integer a=127; Integer b=127; 如果a==b 是什么结果?
+   如果a和b都是1000   那么a==b是什么结果?   说出原因
+- true
+- false
+原因: Integer底层具有缓冲区(通过内部类实现的),范围-128~127
+一个字节的大小  如果没有超过范围 都存储缓冲区的 没有定义新的对象
+所以a和b都是127 都会指向缓冲区 所以true
+如果超过范围了 就会创建新的对象 new Integer()  再通过==
+比较地址一定不相同 所以false
+
+b.String和Integer 怎么进行相互转换?
+String===>Double
+Double d=Double.parseDouble("15.5");
+double d2=Double.valueOf("15.5");
+
+Double===>String
+double d3=15.5;
+String s=d3+"";
+String s2=Double.toString(d3);
+String s3=String.valueOf(d3);
+
+3.编程题--- 能做多少提交多少 可以不用全做完
+a.将输入的任意0-999的整数全部补全为三位数输出(不足三位补0)
+
+b.在控制台输入字符串和子字符串，并计算字符串中子字符串 出现的次数
+比如:输入字符串:"abcdfsdfabcdfabcdsf";
+子字符串:"abc";
+出现次数:3次
+
+c.编写一个方法，接受一个字符串作为输入，返回一个“压缩”的版本。压缩的规则是：如果一个字符重复出现，则该字符后面跟着它的重复次数
+比如:输入: "aabcccccaaa"      输出: "a2b1c5a3
+
+d.获得一个日期所在的周的星期几的日期，
+如要找出2023年2月3日所在周的星期一是几号
+
+e.模拟实现一个记录手机视频时长  每次视频10分钟   第二次累加上一次的时间
+   结果如下: 通话时长    "10:15:12";
+比如: 开始通话
+         已经通过: 00:10:00
+         是否继续通话(y/n): y
+         已经通过: 00:20:00
+         是否继续通话(y/n): n
+         通话时才: 00:20:00

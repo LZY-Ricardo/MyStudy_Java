@@ -1,0 +1,71 @@
+1.手写代码
+a.手动编写一段二分查找的代码
+-二分查找:在一个有序数组基础上 进行折半 查找
+public int search(int[] num,int number){
+    //1.定义查找范围
+    int min=0;
+    int max=nums.length-1;
+    //2.循环查找
+    while(min<=max){
+        //3.计算中间的位置
+        int mid=(min+max)/2;
+        if(nums[mid] > number){//比中间值小 继续查找中间值左边的元素
+            max=mid-1;
+        } else if(nums[mid] < number){
+            min=mid+1;
+        }else{ //等于中间值
+            return mid;
+        }
+    }
+    return -1;
+}
+b.Map集合可以通过什么方式遍历,通过代码实现出来
+Map<String,Integer> m=new HashMap();
+--增强for
+for(String key:m.keySet()){
+    Integer value=map.get(key);
+    System.out.println(key+"="+value);
+}
+--迭代器   利用entrySet()做遍历
+Iterator<Map.Entry<String,Integer>> it=m.entrySet().iterator();
+while(it.hasNext()){
+    Map.Entry<String,Integer> e=it.next();//获取下一个元素
+    String k=e.getKey();
+    Integer v=e.getValue();
+    //String k=it.next().getKey();
+    //String v=it.next().getValue();
+}
+}
+2.语音题目
+a.讲一下什么是工厂模式  它有什么优势?
+工厂模式: 其实就是把创建对象封装起来了而已,可以将对象使用和对象创建耦合
+- 优点：解耦合 可以统一管理对象
+b.讲一下什么是单例模式  它有什么优势?
+单例模式: 这个类无论如何 只能创建一个对象
+- 优点: 比较节省资源
+
+3.基础题
+a.创建HashMap集合，以商品名做键，以售出数量做值
+ 循环使用键盘输入商品名称，如果输入“end”表示结束循环不再输入数据
+ 如果map中没有这个商品，售卖数量设置为1次
+ 如果map中有这个商品，售卖数量加1次
+ 遍历map集合，打印商品名称和售卖的数量
+
+b.创建一个球员类，并且该类最多只允许创建十一个对象。提示利用 static 和 封装性来完成。
+
+4.选做题
+a.你正在设计一个数据库连接池，该连接池需要确保在整个应用程序中只有一个唯一的实例。
+这是为了避免频繁创建和销毁数据库连接，提高系统性能。
+要求：使用单例模式确保数据库连接池在应用程序中只有一个实例，且能够懒加载
+
+b.你正在设计一个图形库，其中需要支持绘制不同类型的图形，如圆形、矩形和三角形。每个图形都有自己的绘制方法。
+你希望实现一种灵活的方式来创建不同类型的图形对象，并在未来轻松添加新的图形类型。
+要求：使用工厂方法模式设计一个图形工厂接口，并实现三个具体的图形工厂类： CircleFactory
+RectangleFactory 和 TriangleFactory 。每个工厂类负责创建相应类型的图形对象
+提示:
+1. 定义图形接口：创建一个图形接口，其中包含用于绘制图形的抽象方法。
+2. 创建具体图形类：对于每种图形类型，创建具体的图形类实现图形接口，实现绘制方法。
+3. 定义图形工厂接口：创建一个图形工厂接口，其中包含用于创建图形对象的工厂方法。
+4. 创建具体图形工厂类：对于每种图形类型，创建具体的图形工厂类实现图形工厂接口，负责创建
+相应的图形对象。
+5. 使用工厂方法：在图形库的客户端代码中，通过选择适当的图形工厂类来创建图形对象
